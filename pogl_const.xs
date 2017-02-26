@@ -22,14 +22,6 @@
 #include "gl_util.h"
 #endif
 
-#ifdef HAVE_GLX
-#include "glx_util.h"
-#endif
-
-#ifdef HAVE_GLU
-#include "glu_util.h"
-#endif
-
 #if defined(HAVE_GLUT) || defined(HAVE_FREEGLUT)
 #ifndef GLUT_API_VERSION
 #define GLUT_API_VERSION 4
@@ -47,10 +39,7 @@
 static SV *
 neoconstant(char * name, int arg)
 {
-#include "gl_const.h"
-#include "glu_const.h"
 #include "glut_const.h"
-#include "glx_const.h"
 	;
 	return 0;
 }
@@ -61,7 +50,7 @@ neoconstant(char * name, int arg)
 #endif /* defined IN_POGL_CONST_XS */
 
 
-MODULE = OpenGL::Const		PACKAGE = OpenGL
+MODULE = OpenGL::GLUT::Const		PACKAGE = OpenGL::GLUT
 
 #ifdef IN_POGL_CONST_XS
 

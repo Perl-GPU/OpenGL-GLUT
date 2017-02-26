@@ -312,10 +312,6 @@ extern GLvoid * allocate_image_ST(GLsizei width, GLsizei height, GLsizei depth, 
 extern SV ** unpack_image_ST(SV ** SP, void * data, 
 GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, int mode);
 
-extern GLvoid * ELI(SV * sv, GLsizei width, GLsizei height, GLenum format, GLenum type, int mode);
-
-extern GLvoid * EL(SV * sv, int needlen);
-
 extern int gl_type_size(GLenum type);
 
 extern int gl_component_count(GLenum format, GLenum type);

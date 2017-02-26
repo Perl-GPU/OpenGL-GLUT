@@ -1,4 +1,5 @@
-use OpenGL qw(:all);
+use OpenGL::GLUT qw(:all);
+use OpenGL::Modern qw(:all);
 
 glutInit();
 
@@ -18,6 +19,6 @@ glutReshapeFunc(sub { print "Reshape!\n";
 
 glutCreateMenu(sub { print "Got menu ",@_,"\n" } );
 glutAddMenuEntry("Hello", 1);
-glutAttachMenu(0);
+glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 glutMainLoop();
