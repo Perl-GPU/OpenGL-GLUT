@@ -1,8 +1,8 @@
-/*  Last saved: Tue 20 Sep 2011 09:59:29 AM */
+/*  Last saved: Mon 27 Feb 2017 01:28:31 PM */
 
 /*  Copyright (c) 1998 Kenneth Albanowski. All rights reserved.
  *  Copyright (c) 2007 Bob Free. All rights reserved.
- *  Copyright (c) 2009 Chris Marshall. All rights reserved.
+ *  Copyright (c) 2009,2017 Chris Marshall. All rights reserved.
  *  This program is free software; you can redistribute it and/or
  *  modify it under the same terms as Perl itself.
  */
