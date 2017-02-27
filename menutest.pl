@@ -1,6 +1,9 @@
 use OpenGL::GLUT qw(:all);
 use OpenGL::Modern qw(:all);
 
+# NOTE: This example only demonstrates the GLUT menu functionality
+#       A complete example would include the needed callbacks for rendering.
+
 glutInit();
 
 glutInitWindowPosition(10, 10);
