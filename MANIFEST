@@ -7,6 +7,7 @@ GLUT.xs
 MANIFEST			This list of files
 MANIFEST.SKIP
 Makefile.PL
+README.md
 gl_util.c
 gl_util.h
 glext_procs.h

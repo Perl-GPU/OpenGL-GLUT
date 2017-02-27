@@ -1,0 +1,12 @@
+MYMETA.*
+MANIFEST.bak
+Makefile
+Makefile.old
+OpenGL-GLUT-*.tar.gz
+OpenGL-GLUT-*/
+*.bs
+*.o
+blib/
+pm_to_blib
+*~
+gl_exclude.h
