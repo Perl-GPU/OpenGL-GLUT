@@ -455,7 +455,7 @@ sub AUTOLOAD {
 #require XSLoader;
 #XSLoader::load('OpenGL::GLUT', $VERSION);
 
-#bootstrap OpenGL::GLUT;
+bootstrap OpenGL::GLUT;
 
 
 1;

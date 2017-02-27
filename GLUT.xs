@@ -1,4 +1,4 @@
-/*  Last saved: Tue 02 Apr 2013 02:45:10 PM */
+/*  Last saved: Mon 27 Feb 2017 10:39:32 AM */
 
 /*  Copyright (c) 1998 Kenneth Albanowski. All rights reserved.
  *  Copyright (c) 2007 Bob Free. All rights reserved.
@@ -1563,7 +1563,6 @@ glutCloseFunc(handler=0, ...)
 
 
 BOOT:
-  PGOPOGL_CALL_BOOT(boot_OpenGL__GLUT);
   PGOPOGL_CALL_BOOT(boot_OpenGL__GLUT__Const);
   PGOPOGL_CALL_BOOT(boot_OpenGL__GLUT__GL__Top);
 
