@@ -9,7 +9,7 @@ package OpenGL::GLUT;
 #  modify it under the same terms as Perl itself.
 
 require Exporter;
-use AutoLoader;
+require DynaLoader;
 
 use Carp;
 
@@ -17,7 +17,7 @@ our $VERSION = '0.70';
 $XS_VERSION = eval($VERSION);
 $VERSION = eval($VERSION);
 
-@ISA = qw(Exporter);
+@ISA = qw(Exporter AutoLoader DynaLoader);
 
 our $gl_version;
 our $glext_installed = {};
@@ -452,8 +452,8 @@ sub AUTOLOAD {
     goto &$AUTOLOAD;
 }
 
-require XSLoader;
-XSLoader::load('OpenGL::GLUT', $VERSION);
+#require XSLoader;
+#XSLoader::load('OpenGL::GLUT', $VERSION);
 
 #bootstrap OpenGL::GLUT;
 

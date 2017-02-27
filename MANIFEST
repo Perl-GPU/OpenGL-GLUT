@@ -26,7 +26,6 @@ include/GL/wglext.h
 lib/OpenGL/GLUT.pm
 menutest.pl
 pgopogl.h
-pgopogl.xs
 pogl_const.xs
 pogl_gl_top.xs
 ppport.h
