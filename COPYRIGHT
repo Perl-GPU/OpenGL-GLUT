@@ -1,14 +1,13 @@
 
- Copyright (c) 1998,1999 Kenneth Albanowski. All rights reserved.
- Copyright (c) 2007 Bob Free. All rights reserved.
- Copyright (c) 2009-2013 Chris Marshall. All rights reserved.
+ Copyright (c) 1995 Stan Melax.  All rights reserved.
+ Copyright (c) 1998,1999 Kenneth Albanowski.  All rights reserved.
+ Copyright (c) 2007 Bob Free.  All rights reserved.
+ Copyright (c) 2009-2017 Chris Marshall.  All rights reserved.
  This program is free software; you can redistribute it and/or
  modify it under the same terms as Perl itself.
 
-Some portions of this module, including some code sections in OpenGL.pm and
-OpenGL.xs (marked by "Melax" comments) are Copyright Stan Melax, as are the
-files in the example/ directory. This is Stan's original COPYRIGHT message
-for those works:
+This module was derived from work by Stan Melax.  This is Stan's
+original COPYRIGHT message for those works:
 
 (c) Copyright 1995, Stan Melax, ALL RIGHTS RESERVED
 Stan Melax
@@ -16,34 +15,24 @@ Alberta Research Council
 stan@arc.ab.ca
 http://www.arc.ab.ca/~stan
 
-Please feel free to give 
-me acknowledgement/credit/money/honorable-mention/job-offers/research-funding
-wherever or whenever appropriate :-)
-Permission to copy, modify is granted provided that you
-include the above copyright notice with it.
-This software is provided as is, and comes with no promises
-or guarantees.  You may only use it if you promise not to
-sue me or my employer for anything relating to the use of
-this software :-) 
+Please feel free to give me acknowledgement/credit/money/honorable-mention/job-offers/research-funding
+wherever or whenever appropriate :-)  Permission to copy, modify is granted provided that you
+include the above copyright notice with it.  This software is provided as is, and comes with no promises
+or guarantees.  You may only use it if you promise not to sue me or my employer for anything relating
+to the use of this software :-) 
 
 OpenGL is a trademark of Silicon Graphics Inc.
 
 Special thanks to:
-	Tim Bunce
-	Brian Paul
-	Karl Glazebrook   http://www.ast.cam.ac.uk/~kgb
-	The Alberta Research Council
-	
-Feel free to email me your name so I can add it to the above list.
-Acknowledgement and credit for those where acknowledgement
-and credit is warrented ... yadda , yadda .... bla ... bla ...
+    Tim Bunce
+    Brian Paul
+    Karl Glazebrook   http://www.ast.cam.ac.uk/~kgb
+    The Alberta Research Council
 
-Some of these examples in the "examples" subdirectory
-are adapted from the OpenGL Programming Guide.
+Some of these examples in the "examples" subdirectory are adapted from the OpenGL Programming Guide.
 
-Here's the copyright that was attached to the examples
-from "OpenGL Programming Guide" by Neider, Davis, and Woo,
-and published by Addison Wesley:
+Here's the copyright that was attached to the examples from "OpenGL Programming Guide" by Neider,
+Davis, and Woo, and published by Addison Wesley:
 
 /*
  * (c) Copyright 1993, Silicon Graphics, Inc.
