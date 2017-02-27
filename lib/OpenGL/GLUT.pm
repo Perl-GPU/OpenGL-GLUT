@@ -14,7 +14,7 @@ require DynaLoader;
 use Carp;
 
 our $VERSION = '0.70_01';
-$XS_VERSION = eval($VERSION);
+$XS_VERSION = $VERSION;
 $VERSION = eval($VERSION);
 
 @ISA = qw(Exporter AutoLoader DynaLoader);
