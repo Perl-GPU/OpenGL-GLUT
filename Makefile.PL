@@ -17,9 +17,6 @@ our $is_valid_interface =
   'AGL'       => 'Default GLUT framework on Mac OS X',
   'FREEGLUT'  => 'FreeGLUT, preferred over GLUT',
   'GLUT'      => 'GLUT; often really FreeGLUT on Linux',
-  'GLX'       => 'Default GLX+X11 on Linux; use XQuartz on Mac OS X',
-  'W32API'    => 'Uses WGL+FreeGLUT on CYGWIN, instead of GLX+FreeGLUT',
-  'WGL'       => 'Same as W32API',
 };
 
 
