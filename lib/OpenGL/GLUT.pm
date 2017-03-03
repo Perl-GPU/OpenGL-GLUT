@@ -471,10 +471,11 @@ OpenGL::GLUT - Perl bindings to GLUT/FreeGLUT GUI toolkit
 
 =head1 DESCRIPTION
 
-OpenGL::GLUT is a stand-alone module for GLUT/FreeGLUT bindings
-extracted from code in the original Perl OpenGL module.  The
-purpose is to make this functionality available independent of
-the legacy OpenGL module for use with OpenGL::Modern.
+OpenGL::GLUT is the alpha release of a stand-alone module for
+GLUT/FreeGLUT bindings extracted from code in the original Perl
+OpenGL module.  The purpose is to make this functionality
+available independent of the legacy OpenGL module for use with
+OpenGL::Modern.
 
 =head2 EXPORT
 
