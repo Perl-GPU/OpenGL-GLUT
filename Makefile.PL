@@ -577,11 +577,17 @@ my $build_config =
   'dynamic_lib'	=> $DYNS,
   'LDFROM'      => '$(OBJECT) '.(defined($LDFROM)?$LDFROM:''),
   'META_MERGE' => {
+     "meta-spec" => { version => 2 },
      abstract  => 'Perl bindings to the GLUT/FreeGLUT toolkit',
      resources => {
         homepage => 'http://sourceforge.net/projects/pogl/',
-        bugtracker  => 'http://sourceforge.net/tracker/?group_id=562483&atid=2281758',
-        repository  => 'git://pogl.git.sourceforge.net/gitroot/pogl/pogl',
+        bugtracker  => {web=>'https://github.com/Perl-GPU/OpenGL-GLUT/issues'},
+        repository  => {
+           url => 'git://github.com/Perl-GPU/OpenGL-GLUT.git',
+           type => 'git',
+           web => 'https://github.com/Perl-GPU/OpenGL-GLUT',
+        },
+        x_IRC => 'irc://irc.perl.org/#pogl',
      },
   },
   'EXE_FILES'	=> $EXES,
