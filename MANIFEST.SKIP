@@ -61,3 +61,4 @@ pogl_gl_funcs.txt
 utils/glversion(\.exe|\.o.*|\.txt|)$
 utils/glxinfo.c
 test.png
+^xt/
