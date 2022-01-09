@@ -1,2 +1,4 @@
+- re-enable glutCloseFunc
+
 0.71 2017-03-03
 - First official CPAN release of OpenGL::GLUT

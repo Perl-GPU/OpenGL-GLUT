@@ -477,6 +477,9 @@ OpenGL module.  The purpose is to make this functionality
 available independent of the legacy OpenGL module for use with
 OpenGL::Modern.
 
+When you register a C<glutCloseFunc>, ensure that you de-register it
+before destroying the window. See the supplied F<test.pl>.
+
 =head2 EXPORT
 
   :all - exports all GLUT functions and constants
@@ -494,6 +497,7 @@ OpenGL::Modern.
   void glutButtonBoxFunc( void (* callback)( int, int ) )
   void glutChangeToMenuEntry( int item, const char* label, int value )
   void glutChangeToSubMenu( int item, const char* label, int value )
+  void glutCloseFunc( void (* callback)( void ) )
   void glutCopyColormap( int window )
   int glutCreateMenu( void (* callback)( int menu ) )
   int glutCreateSubWindow( int window, int x, int y, int width, int height )
@@ -599,11 +603,9 @@ OpenGL::Modern.
   void glutWireTetrahedron( void )
   void glutWireTorus( GLdouble innerRadius, GLdouble outerRadius, GLint sides, GLint rings )
 
-
-
 =head1 SEE ALSO
 
-TODO
+L<OpenGL> (for now)
 
 =head1 AUTHOR
 

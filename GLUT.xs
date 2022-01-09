@@ -73,8 +73,6 @@ _pgopogl_call_XS (pTHX_ void (*subaddr) (pTHX_ CV *), CV * cv, SV ** mark)
 #endif
 
 static int _done_glutInit = 0;
-static int _done_glutCloseFunc_warn = 0;
-
 
 /* Macros for GLUT callback and handler declarations */
 #  define DO_perl_call_sv(handler, flag) perl_call_sv(handler, flag)
@@ -119,17 +117,17 @@ static SV * get_glut_win_handler(int win, int type)
 	SV ** h;
 
 	if (!glut_handlers)
-		croak("Unable to locate glut handler");
+		croak("Unable to locate glut handlers list");
 
 	h = av_fetch(glut_handlers, win, FALSE);
 
 	if (!h || !SvOK(*h) || !SvROK(*h))
-		croak("Unable to locate glut handler");
+		croak("Unable to locate glut handler list for window %d", win);
 
 	h = av_fetch((AV*)SvRV(*h), type, FALSE);
 
 	if (!h || !SvOK(*h) || !SvROK(*h))
-		croak("Unable to locate glut handler");
+		croak("Unable to locate glut handler type=%d for window %d", type, win);
 
 	return SvRV(*h);
 }
@@ -1555,16 +1553,12 @@ void
 glutCloseFunc(handler=0, ...)
 	SV *	handler
 	CODE:
-        {
-	    if (_done_glutCloseFunc_warn == 0) {
-	        warn("glutCloseFunc: not implemented\n");
-	        _done_glutCloseFunc_warn++;
-            }
-        }
-
+#if defined HAVE_FREEGLUT
+	  decl_gwh_xs(Close)
+#elif defined HAVE_AGL_GLUT
+	  decl_gwh_xs(WMClose)
+#endif
 
 BOOT:
   PGOPOGL_CALL_BOOT(boot_OpenGL__GLUT__Const);
   PGOPOGL_CALL_BOOT(boot_OpenGL__GLUT__GL__Top);
-
-
