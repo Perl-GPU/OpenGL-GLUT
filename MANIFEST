@@ -34,6 +34,7 @@ ppport.h
 README.md
 t/00_require.t
 t/01_use.t
+test.pl
 typemap
 utils/cleanup.pl
 utils/const.pl
