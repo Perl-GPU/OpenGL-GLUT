@@ -17,7 +17,7 @@ use Carp;
 
 our $VERSION = '0.71_01';
 our $XS_VERSION = $VERSION;
-our @ISA = qw(Exporter AutoLoader DynaLoader);
+our @ISA = qw(Exporter DynaLoader);
 our ($gl_version, $AUTOLOAD);
 our $glext_installed = {};
 
