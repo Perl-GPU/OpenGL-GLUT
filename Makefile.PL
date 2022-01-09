@@ -596,6 +596,7 @@ my $build_config =
   {
     FILES =>
       "utils/glversion.txt ".
+      "gl_exclude.h ".
       "utils/glversion$Config{exe_ext} ".
       "utils/glversion$Config{obj_ext}"
   }
