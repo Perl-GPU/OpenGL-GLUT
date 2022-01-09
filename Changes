@@ -1,4 +1,5 @@
 - re-enable glutCloseFunc
+- dep on OpenGL 0.70 for present time
 
 0.71 2017-03-03
 - First official CPAN release of OpenGL::GLUT

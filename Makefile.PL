@@ -567,6 +567,9 @@ my $build_config =
 {
   'NAME'	=> 'OpenGL::GLUT',
   'VERSION_FROM'=> 'lib/OpenGL/GLUT.pm',
+  PREREQ_PM => {
+    'OpenGL' => '0.70',
+  },
   CONFIGURE_REQUIRES => {
     "ExtUtils::MakeMaker" => '6.64',
   },
