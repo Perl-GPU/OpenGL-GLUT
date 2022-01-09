@@ -567,7 +567,12 @@ my $build_config =
 {
   'NAME'	=> 'OpenGL::GLUT',
   'VERSION_FROM'=> 'lib/OpenGL/GLUT.pm',
-  'PREREQ_PM' => { 'Test::More' => 0 },
+  CONFIGURE_REQUIRES => {
+    "ExtUtils::MakeMaker" => '6.64',
+  },
+  TEST_REQUIRES => {
+    'Test::More' => '0.88',
+  },
   'AUTHOR'	=> "Chris Marshall ".'<chm at cpan dot org>',
   'OBJECT' 	=> '$(BASEEXT)$(OBJ_EXT) gl_util$(OBJ_EXT) pogl_const$(OBJ_EXT) pogl_gl_top$(OBJ_EXT)',
   'XSPROTOARG'	=> '-noprototypes',
