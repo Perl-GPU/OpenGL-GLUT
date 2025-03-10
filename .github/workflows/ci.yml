@@ -21,9 +21,8 @@ jobs:
             coverage: true
           - perl-version: '5.30'
             os: windows-latest
-          #disabled as Apple headers have `const GLvoid *` while OpenGL has `void *`
-          #- perl-version: '5.30'
-          #  os: macos-latest
+          - perl-version: '5.30'
+            os: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: 'ci-dist: target-setup-perl'
