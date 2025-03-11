@@ -25,7 +25,6 @@
 /* Use version-detection if available */
 #if defined(HAVE_VER)
 #include "glext_types.h"
-#include "gl_exclude.h"
 #include "glext_procs.h"
 #else
 #endif

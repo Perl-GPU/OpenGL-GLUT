@@ -48,7 +48,6 @@ EL-ELI.c
 ^GLUT.c
 ^GLUT.o
 ^gl-funs.txt
-^gl_exclude.h$
 ^gl_util.o
 ^gllist
 ^pdl.h

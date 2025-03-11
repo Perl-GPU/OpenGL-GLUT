@@ -604,7 +604,6 @@ my $build_config =
   {
     FILES =>
       "utils/glversion.txt ".
-      "gl_exclude.h ".
       "utils/glversion$Config{exe_ext} ".
       "utils/glversion$Config{obj_ext}"
   }
@@ -802,8 +801,6 @@ sub get_extensions
   print "Testing for OpenGL Extensions\n" if ($verbose);
 
   # clean up previous output files
-  my $exc_file = 'gl_exclude.h';
-  unlink($exc_file) if (-e $exc_file);
   my $glv_file = 'utils/glversion.txt';
   unlink($glv_file) if (-e $glv_file);
 
@@ -884,34 +881,10 @@ sub get_extensions
 
   print "This looks like OpenGL Version: $gldata->{VERSION}\n";
 
-  # Parse glext_procs.h file
-  open GLEXT, "glext_procs.h" or die "get_extensions: could not open glext_procs.h: $!\n";
-  my @lines = <GLEXT>;
-  close(GLEXT);
-
-  my $no_ext = {};
-  foreach my $line (@lines)
-  {
-    next if ($line !~ m|\#ifndef NO_([^\s]+)|);
-    my $ext = $1;
-    next if ($ext =~ m|^GL_VERSION_|);
-    $no_ext->{$ext}++;
-  }
-
-
-  # Create gl_exclude.h
-  die "Unable to write to $exc_file\n" if (!open(GLEXC,">$exc_file"));
-  print GLEXC "// OpenGL Extension Exclusions - may be modified before building.\n";
-  print GLEXC "//\n";
-  print GLEXC "// Generated for ".$gldata->{VENDOR}.", ".$gldata->{RENDERER}."\n";
-  print GLEXC "// OpenGL v".$gldata->{VERSION}.", using ";
-
   # Fix GLUT flags based on results
   if ($gldata->{FREEGLUT})
   {
     print 'Found FreeGLUT v'.$gldata->{FREEGLUT}."\n";
-    print GLEXC 'FreeGLUT v'.$gldata->{FREEGLUT}."\n";
-
     if (!$found->{FREEGLUT} && !$found->{FREEGLUT32})
     {
       $found->{FREEGLUT} = $lib;
@@ -933,53 +906,6 @@ sub get_extensions
     $GL_VERSION = $1;
     ($GL_VERSION_MAJOR,$GL_VERSION_MINOR) = split('.', $GL_VERSION);
   }
-
-  # Make an empty exclusion file if a Windows distribution build
-  if ($no_excl)
-  {
-    print "OpenGL Extension exclusions disabled\n";
-    print GLEXC "//\n";
-    print GLEXC "// Exclusions omitted for distribution build.\n";
-  }
-  else
-  {
-    print GLEXC "\n";
-    if ($GL_VERSION)
-    {
-      print GLEXC "#define NO_GL_VERSION_4_5\n" if ($GL_VERSION < 4.5);
-      print GLEXC "#define NO_GL_VERSION_4_4\n" if ($GL_VERSION < 4.4);
-      print GLEXC "#define NO_GL_VERSION_4_3\n" if ($GL_VERSION < 4.3);
-      print GLEXC "#define NO_GL_VERSION_4_2\n" if ($GL_VERSION < 4.2);
-      print GLEXC "#define NO_GL_VERSION_4_1\n" if ($GL_VERSION < 4.1);
-      print GLEXC "#define NO_GL_VERSION_4_0\n" if ($GL_VERSION < 4.0);
-      print GLEXC "#define NO_GL_VERSION_3_3\n" if ($GL_VERSION < 3.3);
-      print GLEXC "#define NO_GL_VERSION_3_2\n" if ($GL_VERSION < 3.2);
-      print GLEXC "#define NO_GL_VERSION_3_1\n" if ($GL_VERSION < 3.1);
-      print GLEXC "#define NO_GL_VERSION_3_0\n" if ($GL_VERSION < 3.0);
-      print GLEXC "#define NO_GL_VERSION_2_1\n" if ($GL_VERSION < 2.1);
-      print GLEXC "#define NO_GL_VERSION_2_0\n" if ($GL_VERSION < 2.0);
-      print GLEXC "#define NO_GL_VERSION_1_5\n" if ($GL_VERSION < 1.5);
-      print GLEXC "#define NO_GL_VERSION_1_4\n" if ($GL_VERSION < 1.4);
-      print GLEXC "#define NO_GL_VERSION_1_3\n" if ($GL_VERSION < 1.3);
-      print GLEXC "#define NO_GL_VERSION_1_2\n" if ($GL_VERSION < 1.2);
-      print GLEXC "#define NO_GL_VERSION_1_1\n" if ($GL_VERSION < 1.1);
-    }
-
-    foreach my $ext (split(' ',$gldata->{EXTENSIONS}))
-    {
-      next if (!$no_ext->{$ext});
-      $no_ext->{$ext} = 0;
-    }
-
-    foreach my $ext (sort keys(%$no_ext))
-    {
-      next if (!$no_ext->{$ext});
-      print GLEXC "#define NO_$ext\n";
-    }
-  }
-
-  close(GLEXC);
-
 
   # return Distributable Defs
   print "Have Version Data\n" if ($verbose);

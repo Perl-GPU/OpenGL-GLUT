@@ -9,7 +9,6 @@ OpenGL-GLUT-*/
 blib/
 pm_to_blib
 *~
-gl_exclude.h
 GLUT.c
 pogl_const.c
 pogl_gl_top.c
