@@ -9,14 +9,14 @@ use OpenGL qw/ :glfunctions :glconstants
 /;
 use OpenGL::GLUT qw/ :all /;
 
-eval 'error(use OpenGL::Image 1.03';  # Need to use OpenGL::Image 1.03 or higher!
+eval 'use OpenGL::Image 1.03';  # Need to use OpenGL::Image 1.03 or higher!
 my $hasImage = !$@;
 my $hasIM_635 = $hasImage && OpenGL::Image::HasEngine('Magick','6.3.5');
 
-eval 'error(use OpenGL::Shader';
+eval 'use OpenGL::Shader';
 my $hasShader = !$@;
 
-eval 'error(use Image::Magick';
+eval 'use Image::Magick';
 my $hasIM = !$@;
 
 eval 'use Time::HiRes qw( gettimeofday )';
