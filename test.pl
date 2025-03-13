@@ -507,8 +507,7 @@ sub ourBuildTextures
     $Tex_Width, $Tex_Height, $Tex_Format, $Tex_Size,
     $Tex_Pixels->ptr())))
   {
-    printf STDERR "GLULib%s\n", gluErrorString($gluerr);
-    exit(-1);
+    die sprintf "GLULib%s\n", gluErrorString($gluerr);
   }
 
   # Benchmarks for Image Loading
@@ -662,7 +661,7 @@ sub ourInitShaders
       print "Vertex Prog: $vprog\n";
     }
 
-    # Lazy Metalic Fragment shader
+    # Lazy Metallic Fragment shader
     my $FragProg = qq
       {uniform vec4 surfacecolor;
       void main (void)
@@ -1580,5 +1579,12 @@ glutMainLoop();
 print "Returned from glutMainLoop\n";
 
 print "Exiting in main thread\n";
+if ($^O ne 'MSWin32') {
+  my $errors = '';
+  while((my $err = glGetError()) != 0) {
+    $errors .= "glError: " . gluErrorString($err) . "\n";
+  }
+  die $errors if $errors;
+}
 
 __END__
