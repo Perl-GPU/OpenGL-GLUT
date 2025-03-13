@@ -8,13 +8,11 @@ use OpenGL qw/ :glfunctions :glconstants
   gluPerspective gluUnProject_p gluOrtho2D gluErrorString gluBuild2DMipmaps_c
 /;
 use OpenGL::GLUT qw/ :all /;
+use OpenGL::Config;
 
 eval 'use OpenGL::Image 1.03';  # Need to use OpenGL::Image 1.03 or higher!
 my $hasImage = !$@;
 my $hasIM_635 = $hasImage && OpenGL::Image::HasEngine('Magick','6.3.5');
-
-eval 'use OpenGL::Shader';
-my $hasShader = !$@;
 
 eval 'use Image::Magick';
 my $hasIM = !$@;
@@ -101,7 +99,6 @@ my $RenderBufferID;
 my $VertexProgID;
 my $FragProgID;
 my $FBO_rendered = 0;
-my $Shader;
 
 # Object and scene global variables.
 my $Teapot_Rot = 0.0;
@@ -631,39 +628,7 @@ sub ourInitShaders
 {
   # Setup Vertex/Fragment Programs to render FBO texture
 
-  if ($hasShader)
-  {
-    my $version = $OpenGL::Shader::VERSION;
-    printf("Using OpenGL::Shader v$version\n");
-    my $types = OpenGL::Shader->GetTypes();
-    my @types = keys(%$types);
-    printf("This installation supports the following shader types: %s\n", join(',', @types));
-
-    # Use OpenGL::Shader
-    $Shader = new OpenGL::Shader();
-    if (!$Shader)
-    {
-      printf("Unable to instantiate OpenGL::Shader\n");
-      return;
-    }
-
-    my $type = $Shader->GetType();
-    my $ext = lc($type);
-
-    my $stat = $Shader->LoadFiles("fragment.$ext","vertex.$ext");
-    if (!$stat)
-    {
-      my $ver = $Shader->GetVersion();
-      print "Using OpenGL::Shader('$type') v$ver\n";
-      return;
-    }
-    else
-    {
-      print "$stat\n";
-    }
-  }
-  # Fall back to doing it manually
-  elsif ($hasFragProg)
+  if ($hasFragProg)
   {
     printf("Using native OpenGL ARB Shader functions\n");
     ($VertexProgID,$FragProgID) = glGenProgramsARB_p(2);
@@ -778,16 +743,7 @@ sub cbRenderScene
     glEnable(GL_DEPTH_TEST);
 
     # Run shader programs for texture.
-    # If installed, use OpenGL::Shader
-    if ($Shader)
-    {
-      $Shader->Enable();
-      $Shader->SetVector('center',0.0,0.0,2.0,0.0);
-      $Shader->SetMatrix('xform',$xform);
-      $Shader->SetVector('surfacecolor',1.0,0.5,0.0,1.0);
-    }
-    # Otherwise, do it manually
-    elsif ($hasFragProg)
+    if ($hasFragProg)
     {
       glEnable(GL_VERTEX_PROGRAM_ARB);
       glEnable(GL_FRAGMENT_PROGRAM_ARB);
@@ -807,11 +763,7 @@ sub cbRenderScene
     glutWireTeapot(0.125);
     glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
-    if ($Shader)
-    {
-      $Shader->Disable();
-    }
-    elsif ($hasFragProg)
+    if ($hasFragProg)
     {
       glDisable(GL_FRAGMENT_PROGRAM_ARB);
       glDisable(GL_VERTEX_PROGRAM_ARB);
@@ -1172,11 +1124,7 @@ sub ReleaseResources
     glDeleteFramebuffersEXT_p( $FrameBufferID ) if ($FrameBufferID);
   }
 
-  if ($Shader)
-  {
-    undef($Shader);
-  }
-  elsif ($hasFragProg)
+  if ($hasFragProg)
   {
     glBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
     glDeleteProgramsARB_p( $VertexProgID ) if ($VertexProgID);
