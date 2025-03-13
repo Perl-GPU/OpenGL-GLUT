@@ -380,7 +380,6 @@ sub ourInit
   printf("\nUsing POGL v$OpenGL::VERSION\n");
 
   # Build texture.
-  ($TextureID_image,$TextureID_FBO) = glGenTextures_p(2);
   ourBuildTextures();
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
 
@@ -612,11 +611,9 @@ sub ourBuildTextures
       GL_RENDERBUFFER_EXT, $RenderBufferID);
 
     # Test status
-    if (DO_TESTS)
-    {
-      my $stat = glCheckFramebufferStatusEXT(GL_RENDERBUFFER_EXT);
-      printf("FBO Status: %04X\n",$stat);
-    }
+    my $stat = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+    die "FBO Status error: " . gluErrorString(glGetError()) if !$stat;
+    die sprintf "FBO Status: %04X", $stat if $stat != GL_FRAMEBUFFER_COMPLETE_EXT;
   }
 
   # Select active texture
