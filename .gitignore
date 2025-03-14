@@ -10,7 +10,9 @@ blib/
 pm_to_blib
 *~
 GLUT.c
+GLUT.def
 pogl_const.c
 pogl_gl_top.c
 utils/glversion
+utils/glversion.exe
 utils/glversion.txt
